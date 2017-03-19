@@ -1,10 +1,15 @@
 import React from 'react';
+import ThoughtCard from '../thoughtCard/thoughtCard';
 
-export const ThoughtList = () => {
+const ThoughtList = () => {
 
   return (
-    <div>
-    ThoughtList
-    </div>
+    <section className="ThoughtList">
+      <ThoughtCard />
+      <ThoughtCard />
+      <ThoughtCard />
+    </section>
   );
 }
+
+export default ThoughtList;

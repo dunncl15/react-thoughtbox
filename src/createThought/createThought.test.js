@@ -5,7 +5,7 @@ import CreateThought from './createThought.js';
 
 describe('CreateThought', () => {
 
-  it.skip('has two input fields', () => {
+  it('has two input fields', () => {
     const wrapper = shallow(
       <CreateThought />
     );
@@ -13,7 +13,7 @@ describe('CreateThought', () => {
     expect(wrapper.find('input').length).toEqual(2);
   });
 
-  it.skip('fires an onChange event on user input which should update both state & the input field', () => {
+  it('fires an onChange event on user input which should update both state & the input field', () => {
     const wrapper = mount(<CreateThought/>);
     const input = wrapper.find('input').first();
     const expectedState = {
@@ -26,7 +26,7 @@ describe('CreateThought', () => {
     expect(wrapper.state()).toEqual(expectedState);
   });
 
-  it.skip('fires onChange on second input which should update both state & the input field', () => {
+  it('fires onChange on second input which should update both state & the input field', () => {
     const wrapper = mount(<CreateThought/>);
     const input = wrapper.find('input').last();
     const expectedState = {
@@ -39,7 +39,7 @@ describe('CreateThought', () => {
     expect(wrapper.state()).toEqual(expectedState);
   });
 
-  it.skip('has a submit button', () => {
+  it('has a submit button', () => {
     const wrapper = shallow(
       <CreateThought />
     );
@@ -56,10 +56,18 @@ describe('CreateThought', () => {
       title: '',
       body: ''
     };
-    const input = wrapper.find('input').last();
-    input.simulate('change', { target: { value: 'abc' } });
+    const title = wrapper.find('input').first();
+    const body = wrapper.find('input').last();
+
+    title.simulate('change', { target: { value: 'abc' } });
+    expect(wrapper.state().title).toEqual('abc');
+
+    body.simulate('change', { target: { value: 'def' } });
+    expect(wrapper.state().body).toEqual('def');
+
     wrapper.find('button').simulate('click');
 
+    expect(wrapper.state()).toEqual(expectedState);
 
     // What input field are we trying to target? What is the action we want to simulate?
 
